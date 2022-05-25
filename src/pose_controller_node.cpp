@@ -126,12 +126,13 @@ public:
     void setRef(double x, double y, double theta) override
     {
         this->ref_ = make_shared<state>(x, y, theta);
+        initialized_ = true;
     }
 
     void loop() override
     {
         // wait for the state variable to populated
-        if(!initialized_ || ref_ == nullptr) return;
+        if(!initialized_) return;
         //compute control
 
         std::tie(rho, v, w) = compute(*est_);
@@ -148,7 +149,7 @@ public:
         if(!initialized_)
         {
             est_ = make_shared<state>(current);
-            initialized_ = true;
+            return;
         }
         auto filteredState = *est_ * lowPassCoeff + current * (1 - lowPassCoeff);
         this->est_ = make_shared<state>(filteredState);
