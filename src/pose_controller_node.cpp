@@ -16,6 +16,7 @@ public:
     {
         nh_ = new ros::NodeHandle("~");
         auto nodeName = ros::this_node::getName();
+        ROS_INFO_STREAM(nodeName << " initiated");
         nh_->getParam("sample_time", dt);
         nh_->getParam("rho_gains", rhoGains);
         nh_->getParam("alpha_gains", alphaGains);

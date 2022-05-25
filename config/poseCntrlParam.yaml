@@ -11,5 +11,5 @@ w_min: -3.14
 
 lowPassCoeff: 0.5
 state_topic: "/roomba20/odometry/filtered"
-cmd_topic: "cmd_vel"
+cmd_topic: "/roomba20/cmd_vel"
 goal_topic: "move_base_simple/goal"
