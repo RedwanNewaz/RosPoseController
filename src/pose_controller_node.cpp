@@ -15,28 +15,29 @@ public:
     RosInterface()
     {
         nh_ = new ros::NodeHandle("~");
-        nh_->getParam("sample_time", dt);
-        nh_->getParam("rho_gains", rhoGains);
-        nh_->getParam("alpha_gains", alphaGains);
-        nh_->getParam("beta_gains", betaGains);
+        auto nodeName = ros::this_node::getName();
+        nh_->getParam(nodeName +"sample_time", dt);
+        nh_->getParam(nodeName +"rho_gains", rhoGains);
+        nh_->getParam(nodeName +"alpha_gains", alphaGains);
+        nh_->getParam(nodeName +"beta_gains", betaGains);
 
         assert(rhoGains.size() == 3 && "gains need to have kp, kd, ki values");
         assert(alphaGains.size() == 3 && "gains need to have kp, kd, ki values");
         assert(betaGains.size() == 3 && "gains need to have kp, kd, ki values");
 
-        nh_->getParam("v_max", v_max);
-        nh_->getParam("v_min", v_min);
-        nh_->getParam("w_max", w_max);
-        nh_->getParam("w_min", w_min);
+        nh_->getParam(nodeName + "v_max", v_max);
+        nh_->getParam(nodeName + "v_min", v_min);
+        nh_->getParam(nodeName + "w_max", w_max);
+        nh_->getParam(nodeName + "w_min", w_min);
 
         // filter
-        nh_->getParam("lowPassCoeff", lowPassCoeff);
+        nh_->getParam(nodeName + "lowPassCoeff", lowPassCoeff);
 
 
         string state_topic, cmd_topic, goal_topic;
-        nh_->getParam("state_topic", state_topic);
-        nh_->getParam("cmd_topic", cmd_topic);
-        nh_->getParam("goal_topic", goal_topic);
+        nh_->getParam(nodeName +"state_topic", state_topic);
+        nh_->getParam(nodeName +"cmd_topic", cmd_topic);
+        nh_->getParam(nodeName +"goal_topic", goal_topic);
         state_sub_ = nh_->subscribe(state_topic, 10, &RosInterface::state_callback, this);
         goal_sub_ = nh_->subscribe(goal_topic, 10, &RosInterface::goal_callback, this);
 
