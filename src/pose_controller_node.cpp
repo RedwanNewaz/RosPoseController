@@ -15,7 +15,7 @@ public:
     RosInterface()
     {
         nh_ = new ros::NodeHandle("~");
-        auto nodeName = ros::this_node::getName();
+        auto nodeName = ros::this_node::getName() + "/";
         nh_->getParam(nodeName +"sample_time", dt);
         nh_->getParam(nodeName +"rho_gains", rhoGains);
         nh_->getParam(nodeName +"alpha_gains", alphaGains);
