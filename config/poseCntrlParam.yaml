@@ -1,7 +1,7 @@
 sample_time: 0.03
 rho_gains: [0.9, 0, 0]
 alpha_gains: [1.5, 0, 0]
-beta_gains: [0.1, 0, ]
+beta_gains: [0.1, 0]
 
 v_max: 1
 v_min: -1
