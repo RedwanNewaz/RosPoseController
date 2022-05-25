@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="pose_controller" type="pose_controller_node" name="poseController">
+        <rosparam command="load" file="$(find pose_controller)/config/poseCntrlParam.yaml" />
+    </node>
+</launch>
