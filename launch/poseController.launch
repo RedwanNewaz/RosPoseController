@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="pose_controller" type="pose_controller_node" name="poseController">
+    <node pkg="pose_controller" type="pose_controller_node" name="poseController" output="screen">
         <rosparam command="load" file="$(find pose_controller)/config/poseCntrlParam.yaml" />
     </node>
 </launch>

@@ -60,6 +60,8 @@ public:
         double y = msg->pose.position.y;
         tf::Quaternion q;
         tf::quaternionMsgToTF(msg->pose.orientation, q);
+
+        ROS_INFO("goal pose received = (%lf, %lf, %lf)", x, y, q.getAngle() );
         setRef(x, y, q.getAngle());
     }
 
@@ -132,6 +134,8 @@ public:
         //compute control
 
         std::tie(rho, v, w) = compute(*est_);
+
+        ROS_INFO("cmd vel = (%lf, %lf, %lf)", rho, v, w);
 
         if (rho <= 0.1)
             v = w = 0;
