@@ -42,6 +42,7 @@ public:
         state_sub_ = nh_->subscribe(state_topic, 10, &RosInterface::state_callback, this);
         goal_sub_ = nh_->subscribe(goal_topic, 10, &RosInterface::goal_callback, this);
 
+        ROS_INFO_STREAM(nodeName << " cmdval topic " << cmd_topic);
 //        cmd_topic = nh_->getNamespace() + cmd_topic;
         cmd_pub_ = nh_->advertise<geometry_msgs::Twist>(cmd_topic, 10);
         v = w = 0;
